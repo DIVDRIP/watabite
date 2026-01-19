@@ -1,176 +1,158 @@
-🍽️ Watabite
-Smart Food Ordering & Delivery Platform
+# 🍽️ Watabite
 
-Watabite is a full-stack food ordering and delivery platform designed to model how modern food-tech companies actually operate internally — beyond just placing orders.
+### Smart Food Ordering & Delivery Platform
 
-Unlike basic food delivery clones, Watabite focuses on operational intelligence such as order prioritization, kitchen workload management, delivery readiness, and SLA tracking.
+Watabite is a **full-stack food ordering and delivery platform** designed to replicate how modern food-tech companies operate **internally**, not just how users place orders.
+Unlike basic delivery clones, Watabite focuses on **operational intelligence**—order prioritization, kitchen workload management, delivery readiness, and SLA tracking.
+This project is built to demonstrate **real-world engineering practices**, not just UI screens.
 
-🚀 What Problem Does Watabite Solve?
+---
 
-Most food delivery apps focus only on:
+## 🚀 Problem Statement
 
-browse → order → deliver
+Most food delivery apps stop at:
 
-Watabite goes deeper and solves real operational problems faced by food-tech platforms:
+```
+ > browse → order → deliver
+```
 
-Kitchens get overloaded
+In reality, food-tech platforms struggle with deeper operational issues:
+* Kitchens get overloaded
+* Orders are prepared too early or too late
+* Delivery partners are assigned inefficiently
+* No visibility into delays or bottlenecks
 
-Orders are prepared too early or too late
+**Watabite solves these problems** using backend-driven workflows and state-based systems.
 
-Delivery partners are assigned inefficiently
+---
 
-No visibility into delays or bottlenecks
+## 🧠 Core Engineering Concepts
 
-Watabite introduces smart workflows to handle these challenges.
+* Backend-first architecture
+* Role-based workflows
+* State-driven order lifecycle
+* Operational dashboards (not just consumer UI)
+* Feature-based full-stack ownership
 
-🧠 Key Concepts Behind Watabite
+This mirrors how production systems are actually designed.
 
-Backend-first architecture
+---
 
-Role-based workflows
+## 👥 User Roles
 
-State-driven order lifecycle
+Watabite supports **four distinct roles**, each with clear responsibilities:
 
-Operational dashboards, not just consumer UI
+### 👤 Customer
 
-Feature-based full-stack ownership
+* Browse restaurants and menus
+* Place food orders
+* Track order status in real time
 
-This project is built to demonstrate real-world engineering thinking, not just UI screens.
+### 🏪 Restaurant Admin
 
-👥 User Roles
+* Manage restaurant profile and menu
+* View incoming orders
+* Track kitchen workload and prep status
 
-Watabite supports four distinct roles, each with a clear responsibility:
+### 🚴 Delivery Partner
 
-👤 Customer
+* Accept assigned deliveries
+* Update delivery status
+* View optimized tasks based on food readiness
 
-Browse restaurants and menus
+### 🧑‍💼 Operations Admin
 
-Place food orders
+* Monitor platform-wide activity
+* Track order SLAs (prep & delivery)
+* Identify delays and operational bottlenecks
 
-Track order status in real time
+---
 
-🏪 Restaurant Admin
+## 🔁 Smart Order Lifecycle
 
-Manage restaurant profile and menu
+Orders follow a strict, state-driven flow:
 
-View incoming orders
-
-Track kitchen workload and preparation status
-
-🚴 Delivery Partner
-
-Accept assigned deliveries
-
-Update delivery status
-
-View optimized tasks based on food readiness
-
-🧑‍💼 Operations Admin
-
-Monitor overall platform activity
-
-Track order SLAs (prep & delivery)
-
-Identify delays and operational bottlenecks
-
-🔁 Smart Order Lifecycle
-
-Orders in Watabite follow a clear, state-driven flow:
-
+```
 PLACED → ACCEPTED → PREPARING → READY → OUT_FOR_DELIVERY → DELIVERED
-
+```
 
 Each transition is:
+* Validated on the backend
+* Restricted by user role
+* Reflected instantly on the frontend
 
-validated on the backend
+This closely mirrors real production systems.
 
-role-restricted
+---
 
-reflected instantly on the frontend
+## ✨ Core Features
 
-This mirrors how production systems are built.
+### 🔐 Authentication & Authorization
 
-✨ Core Features
-🔐 Authentication & Authorization
+* JWT-based authentication
+* Role-based access control
+* Secure protected routes
 
-JWT-based authentication
+### 🍔 Restaurant & Menu Management
 
-Role-based access control
+* Restaurant onboarding
+* Menu CRUD operations
+* Item availability control
 
-Secure protected routes
+### 📦 Smart Order Handling
 
-🍔 Restaurant & Menu Management
+* Prep-time aware order placement
+* Priority-based order processing
+* Strict order state transitions
 
-Restaurant onboarding
+### 🍳 Kitchen Workflow Management
 
-Menu CRUD operations
+* Active kitchen order queue
+* Kitchen load indicators (Low / Medium / High)
+* Preparation status tracking
 
-Availability control
+### 🚚 Delivery Assignment
 
-📦 Smart Order Handling
+* Orders assigned when food is near-ready
+* Delivery partner task optimization
+* Status-based delivery updates
 
-Order placement with prep-time awareness
+### 📊 Operational Dashboard
 
-Priority-based order processing
+* Order volume analytics
+* Average prep & delivery time tracking
+* SLA monitoring and delay visibility
 
-Clear order state transitions
+---
 
-🍳 Kitchen Workflow Management
+## 🏗️ Tech Stack
 
-Active order queue for restaurants
+### Frontend
 
-Kitchen load indicators (Low / Medium / High)
+* React
+* Tailwind CSS
+* Axios
+* React Router
 
-Prep status tracking
+### Backend
 
-🚚 Delivery Assignment
+* Node.js
+* Express.js
+* MongoDB (Mongoose)
+* JWT Authentication
 
-Orders assigned when food is near-ready
+### Tooling & Practices
 
-Delivery partner workflow management
+* RESTful API design
+* Feature-based Git branching
+* Pull Request–based collaboration
+* Postman for API testing
 
-Status-based delivery updates
+---
 
-📊 Operational Dashboard
+## 🧩 Project Structure
 
-Order volume tracking
-
-Average prep & delivery times
-
-SLA monitoring and delay visibility
-
-🏗️ Tech Stack
-Frontend
-
-React
-
-Tailwind CSS
-
-Axios
-
-React Router
-
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB (Mongoose)
-
-JWT Authentication
-
-Tooling & Practices
-
-RESTful API design
-
-Feature-based Git branching
-
-Pull Request–based collaboration
-
-Postman for API testing
-
-🧩 Project Structure
+```
 watabite/
  ├── frontend/
  │    ├── src/
@@ -189,48 +171,41 @@ watabite/
  │    └── config/
  │
  └── README.md
+```
 
-🤝 Collaboration & Development Approach
+---
 
-Feature-based branching (feature/auth, feature/orders, etc.)
+## 🤝 Collaboration & Development Workflow
 
-Full-stack feature ownership (frontend + backend)
+* Feature-based branching (`feature/auth`, `feature/orders`, etc.)
+* Full-stack feature ownership (frontend + backend)
+* Code reviews via Pull Requests
+* Frontend and backend developed independently using API contracts
 
-Code reviews via Pull Requests
+This replicates **real product-team workflows**.
 
-Backend and frontend developed independently using API contracts
+---
 
-This mirrors real product-team workflows.
+## 🧠 What This Project Demonstrates
 
-🧠 What This Project Demonstrates
+* Real-world backend architecture
+* Clean REST API design
+* Role-based system modeling
+* Full-stack collaboration
+* System thinking beyond CRUD apps
 
-Real-world backend design
+---
 
-Clean REST API architecture
+## 📈 Future Enhancements
 
-Role-based system modeling
+* Real-time updates using WebSockets
+* Redis caching for hot data
+* Payment gateway integration
+* Microservices-based order processing
+* Advanced delivery optimization logic
 
-Full-stack collaboration
+---
 
-System thinking beyond CRUD apps
+## 👨‍💻 Authors
 
-📈 Future Enhancements
-
-Real-time updates using WebSockets
-
-Redis caching for hot data
-
-Payment gateway integration
-
-Microservices-based order processing
-
-Advanced delivery optimization logic
-
-👨‍💻 Authors
-
-Watabite is built collaboratively as a hands-on full-stack learning project, focused on gaining practical engineering experience and understanding real-world system design challenges.
-
-⭐ Why Watabite Stands Out
-
-This is not just a food ordering app.
-It is a simulation of how food-tech platforms work behind the scenes.
+Watabite is built collaboratively as a **hands-on full-stack learning project**, focused on gaining practical engineering experience and understanding real-world system design challenges.
