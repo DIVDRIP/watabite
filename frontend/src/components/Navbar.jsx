@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 
-const Navbar = () => {
+const Navbar = ({openLogin}) => {
   const [open, setOpen] = useState(false);
 
 
-  const {user, setUser} = useContext(AppContext); 
+  const {user, setUser, navigate} = useContext(AppContext); 
     
 
   return (
+
     // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg-black relative transition-all">
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg transition-all sticky top-0 w-full backdrop-blur-lg border-b border-black/50 shadow-sm z-50">
       <img src={assets.logo} alt="Watabite Logo" className="h-10 w-auto" />
@@ -51,30 +52,45 @@ const Navbar = () => {
           </svg>
         </div>
 
-        {/* <div className="relative cursor-pointer">
-                    <img src={deliveryicon} alt="" className="h-5 w-auto" />
-                </div> */}
-
-        <button className="cursor-pointer px-8 py-2 bg-black hover:bg-black transition text-white border font-semibold rounded-full">
-          Track
-        </button>
         
-        {user ? (
-            <>
-                <div className="relative group">
-                        <img
-                        src={assets.profileicon}
-                        alt="profile"
-                        className="h-10 w-10 rounded-full  object-cover"
-                        />
-                </div>
+        <div className="relative group">
+          <img
+            src={assets.profileicon}
+            alt="profile"
+            className="h-10 w-10 rounded-full cursor-pointer object-cover"
+          />
 
-            </>
-        ) : (
-            <button className="cursor-pointer px-8 py-2 bg-[#62CC74] hover:bg-[#336f3d] transition text-black font-semibold rounded-full">
-            Login
-            </button>
-        )}
+          {/* Invisible Hover Bridge */}
+          <div className="absolute right-0 top-full h-3 w-full"></div>
+
+          <ul className="hidden group-hover:block absolute top-full right-0 bg-black text-white shadow-md rounded-md border border-gray-200 mt-2 w-32 text-sm">
+            
+            {user ? (
+              <>
+                <li onClick={()=> {
+                  navigate("/my-orders");
+                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  My Orders
+                </li>
+                <li onClick={()=> {
+                  navigate("/track-my-orders");
+                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  Track
+                </li>
+                <li onClick={()=> setUser(null)} 
+                    className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  Logout
+                </li>
+              </>
+            ) : (
+              <li onClick={openLogin} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                Login
+              </li>
+            )}
+
+          </ul>
+        </div>
+
 
       </div>
 
@@ -103,12 +119,43 @@ const Navbar = () => {
       >
         <Link to={"./"}>Home</Link>
         <Link to={"/restaurants"}>Restaurants</Link>
-        <button className="cursor-pointer px-6 py-2 mt-2 bg-black hover:bg-black transition text-white border rounded-full text-sm">
-          Track
-        </button>
-        <button className="cursor-pointer px-6 py-2 mt-2 bg-[#62CC74] hover:bg-[#336f3d] transition text-white rounded-full text-sm">
-          Login
-        </button>
+        <div className="relative group">
+          <img
+            src={assets.profileicon}
+            alt="profile"
+            className="h-10 w-10 rounded-full cursor-pointer object-cover"
+          />
+
+          {/* Invisible Hover Bridge */}
+          <div className="absolute right-0 top-full h-3 w-full"></div>
+
+          <ul className="hidden group-hover:block absolute top-full right-0 bg-black text-white shadow-md rounded-md border border-gray-200 mt-2 w-32 text-sm">
+            
+            {user ? (
+              <>
+                <li onClick={()=> {
+                  navigate("/my-orders");
+                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  My Orders
+                </li>
+                <li onClick={()=> {
+                  navigate("/track-my-orders");
+                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  Track
+                </li>
+                <li onClick={()=> setUser(null)} 
+                    className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                  Logout
+                </li>
+              </>
+            ) : (
+              <li onClick={openLogin} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                Login
+              </li>
+            )}
+
+          </ul>
+        </div>
       </div>
     </nav>
   );
