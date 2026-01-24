@@ -28,7 +28,7 @@ const Navbar = ({ openLogin }) => {
   className={`
     fixed top-0 w-[85vw] left-1/2 -translate-x-1/2 z-50
     flex items-center justify-between
-    px-6 md:px-16 lg:px-24 xl:px-12 py-4
+    px-6 md:px-16 lg:px-24 xl:px-8 py-4
     transition-all duration-300
     ${scrolled
       ? "bg-black/40 backdrop-blur-lg border-b top-3 rounded-full border-white/10 shadow-md"
@@ -36,7 +36,7 @@ const Navbar = ({ openLogin }) => {
   `}
 >
 
-      <img src={assets.logo} alt="Watabite Logo" className="h-10 w-auto" />
+      <img src={assets.logo} alt="Watabite Logo" className="h-11 w-auto" />
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
