@@ -7,7 +7,7 @@ const LoginModal = ({ closeLogin }) => {
   // modal animation state
   const [isVisible, setIsVisible] = useState(false);
 
-  const {navigate} = useContext(AppContext);
+  const {navigate, setUser} = useContext(AppContext);
 
   // login and register form toggler state
   const [toggle, setToggle] = useState("Login");
@@ -75,6 +75,8 @@ const LoginModal = ({ closeLogin }) => {
     if (!validateForm()) return; // stop if invalid
     console.log("Login Function Executed", formData);
     // window.location.replace("/");
+    setUser(true);
+    handleClose();
     navigate("/", { replace: true });
 
   };
@@ -85,6 +87,8 @@ const LoginModal = ({ closeLogin }) => {
     if (!validateForm()) return; // stop if invalid
     console.log("Register Function Executed", formData);
     // window.location.replace("/");
+    setUser(true);
+    handleClose();
     navigate("/", { replace: true });
   };
 
