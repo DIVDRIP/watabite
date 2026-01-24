@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import watabite_logo from "../assets/watabite-logo.svg";
+import { AppContext } from "../context/AppContext";
+import { replace } from "react-router-dom";
 
 const LoginModal = ({ closeLogin }) => {
   // modal animation state
   const [isVisible, setIsVisible] = useState(false);
+
+  const {navigate} = useContext(AppContext);
 
   // login and register form toggler state
   const [toggle, setToggle] = useState("Login");
@@ -66,25 +70,29 @@ const LoginModal = ({ closeLogin }) => {
   };
 
   // button onclick for login handler
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (!validateForm()) return; // stop if invalid
     console.log("Login Function Executed", formData);
-    window.location.replace("/");
+    // window.location.replace("/");
+    navigate("/", { replace: true });
+
   };
 
   // button onclick for register handler
-  const handleRegister = () => {
+  const handleRegister = (e) => {
+    e.preventDefault();
     if (!validateForm()) return; // stop if invalid
     console.log("Register Function Executed", formData);
-    window.location.replace("/");
+    // window.location.replace("/");
+    navigate("/", { replace: true });
   };
 
   // Add a function for closing with animation
   const handleClose = () => {
-    setIsVisible(false);          // start the closing animation
-     setTimeout(() => closeLogin(), 500); // wait for transition (match duration)
+    setIsVisible(false); // start the closing animation
+    setTimeout(() => closeLogin(), 500); // wait for transition (match duration)
   };
-
 
   return (
     <div
@@ -117,88 +125,87 @@ const LoginModal = ({ closeLogin }) => {
 
         {/* login placeholder */}
         <div className="max-h-135 overflow-y-auto pr-2">
-        {toggle === "Login" ? (
-          <div className="flex gap-3 flex-col">
-            <label htmlFor="email">
-              Email Address
-              <input
-                name="email"
-                value={formData.email}
-                onChange={changeHandler}
-                id="email"
-                type="email"
-                className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
-              />
-              {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-              )}
-            </label>
+          {toggle === "Login" ? (
+            <div className="flex gap-3 flex-col">
+              <label htmlFor="email">
+                Email Address
+                <input
+                  name="email"
+                  value={formData.email}
+                  onChange={changeHandler}
+                  id="email"
+                  type="email"
+                  className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
+              </label>
 
-            <label htmlFor="password">
-              Password
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={changeHandler}
-                className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
-              />
-              {errors.password && (
-                <p className='text-red-500 text-sm mt-1'>{errors.password}</p>
-              )}
-            </label>
-          </div>
-        ) : (
-          <div className="flex gap-2 flex-col">
-            <label htmlFor="Full Name">
-              Full Name
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={changeHandler}
-                className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
-              />
-              {errors.name && (
-                <p className='text-red-500 text-sm mt-1'>{errors.name}</p>
-              )}
-            </label>
-            <label htmlFor="email">
-              Email Address
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={changeHandler}
-                className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
-              />
-              {errors.email && (
-                <p className='text-red-500 text-sm mt-1'>{errors.email}</p>
-              )}
-            </label>
+              <label htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={changeHandler}
+                  className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </label>
+            </div>
+          ) : (
+            <div className="flex gap-2 flex-col">
+              <label htmlFor="Full Name">
+                Full Name
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={changeHandler}
+                  className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
+              </label>
+              <label htmlFor="email">
+                Email Address
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={changeHandler}
+                  className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
+              </label>
 
-            <label htmlFor="password">
-              Password
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={changeHandler}
-                className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
-              />
-               {errors.password && (
-                <p className='text-red-500 text-sm mt-1'>{errors.password}</p>
-              )}
-            </label>
-          </div>
-          
-        )}
+              <label htmlFor="password">
+                Password
+                <input
+                  type="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={changeHandler}
+                  className="w-full px-4 py-2 bg-black/70 border border-green-500/30 rounded-4xl text-white focus:outline-none focus:border-green-500"
+                />
+                {errors.password && (
+                  <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                )}
+              </label>
+            </div>
+          )}
         </div>
         {/* button */}
         <button
-          onClick={() => {
-            toggle === "Login" ? handleLogin() : handleRegister();
+          onClick={(e) => {
+            toggle === "Login" ? handleLogin(e) : handleRegister(e);
           }}
           className={` cursor-pointer mt-7 w-full py-2 bg-green-500 hover:bg-green-600 text-black font-semibold rounded-4xl transition-colors`}
         >

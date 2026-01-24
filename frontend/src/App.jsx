@@ -2,7 +2,7 @@ import { Routes, Route} from "react-router-dom";
 import Home from './pages/Home';
 import Navbar from "./components/Navbar";
 import { useState } from "react";
-import LoginModal from "./components/LoginModal";
+import LoginModal from "./models/LoginModal";
 import Restaurants from "./pages/Restaurants";
 import MyOrders from "./pages/MyOrders";
 import TrackMyOrder from "./pages/TrackMyOrder";
