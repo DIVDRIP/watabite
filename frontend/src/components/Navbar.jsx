@@ -13,7 +13,7 @@ const Navbar = ({openLogin}) => {
   return (
 
     // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg-black relative transition-all">
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg transition-all sticky top-0 w-full backdrop-blur-lg border-b border-black/50 shadow-sm z-50">
+    <nav className="flex  items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg transition-all sticky top-0 w-full backdrop-blur-lg border-b border-gray-600 shadow-sm z-50">
       <img src={assets.logo} alt="Watabite Logo" className="h-10 w-auto" />
 
       {/* Desktop Menu */}
