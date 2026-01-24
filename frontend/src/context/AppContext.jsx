@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { restaurantsDetails } from "../assets/assets";
 
 export const AppContext = createContext(null);
 
@@ -19,9 +20,15 @@ const AppContextProvider = ({ children }) => {
   // Global loading state
   const [loading, setLoading] = useState(false);
 
+ 
+  
+
   const value = {
     // navigation
     navigate,
+
+    // restaurants
+    restaurantsDetails,
 
     // auth
     user,
