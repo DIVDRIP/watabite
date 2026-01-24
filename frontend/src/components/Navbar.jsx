@@ -1,19 +1,41 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 
-const Navbar = ({openLogin}) => {
+const Navbar = ({ openLogin }) => {
   const [open, setOpen] = useState(false);
 
+  const { user, setUser, navigate } = useContext(AppContext);
 
-  const {user, setUser, navigate} = useContext(AppContext); 
-    
+  //Navbar transparent effect
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-
     // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg-black relative transition-all">
-    <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 bg transition-all sticky top-0 w-full backdrop-blur-lg border-b border-black/50 shadow-sm z-50">
+    // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 transition-all fixed top-0 w-full bg backdrop-blur-lg border-b border-black/50 shadow-sm z-50">
+
+    <nav
+  className={`
+    fixed top-0 w-[85vw] left-1/2 -translate-x-1/2 z-50
+    flex items-center justify-between
+    px-6 md:px-16 lg:px-24 xl:px-12 py-4
+    transition-all duration-300
+    ${scrolled
+      ? "bg-black/40 backdrop-blur-lg border-b top-3 rounded-full border-white/10 shadow-md"
+      : "bg-transparent"}
+  `}
+>
+
       <img src={assets.logo} alt="Watabite Logo" className="h-10 w-auto" />
 
       {/* Desktop Menu */}
@@ -52,7 +74,6 @@ const Navbar = ({openLogin}) => {
           </svg>
         </div>
 
-        
         <div className="relative group">
           <img
             src={assets.profileicon}
@@ -64,34 +85,41 @@ const Navbar = ({openLogin}) => {
           <div className="absolute right-0 top-full h-3 w-full"></div>
 
           <ul className="hidden group-hover:block absolute top-full right-0 bg-black text-white shadow-md rounded-md border border-gray-200 mt-2 w-32 text-sm">
-            
             {user ? (
               <>
-                <li onClick={()=> {
-                  navigate("/my-orders");
-                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => {
+                    navigate("/my-orders");
+                  }}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   My Orders
                 </li>
-                <li onClick={()=> {
-                  navigate("/track-my-orders");
-                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => {
+                    navigate("/track-my-orders");
+                  }}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   Track
                 </li>
-                <li onClick={()=> setUser(null)} 
-                    className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => setUser(null)}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   Logout
                 </li>
               </>
             ) : (
-              <li onClick={openLogin} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+              <li
+                onClick={openLogin}
+                className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+              >
                 Login
               </li>
             )}
-
           </ul>
         </div>
-
-
       </div>
 
       <button
@@ -130,30 +158,39 @@ const Navbar = ({openLogin}) => {
           <div className="absolute right-0 top-full h-3 w-full"></div>
 
           <ul className="hidden group-hover:block absolute top-full right-0 bg-black text-white shadow-md rounded-md border border-gray-200 mt-2 w-32 text-sm">
-            
             {user ? (
               <>
-                <li onClick={()=> {
-                  navigate("/my-orders");
-                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => {
+                    navigate("/my-orders");
+                  }}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   My Orders
                 </li>
-                <li onClick={()=> {
-                  navigate("/track-my-orders");
-                }} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => {
+                    navigate("/track-my-orders");
+                  }}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   Track
                 </li>
-                <li onClick={()=> setUser(null)} 
-                    className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+                <li
+                  onClick={() => setUser(null)}
+                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                >
                   Logout
                 </li>
               </>
             ) : (
-              <li onClick={openLogin} className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black">
+              <li
+                onClick={openLogin}
+                className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+              >
                 Login
               </li>
             )}
-
           </ul>
         </div>
       </div>

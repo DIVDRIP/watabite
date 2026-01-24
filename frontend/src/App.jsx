@@ -13,7 +13,7 @@ const App = () => {
 
   // const isSellerPath = useLocation().pathname.includes("seller");
   return (
-    <div className="bg-black text-white">
+    <div className="text-default min-h-screen bg-black text-white">
       <Navbar openLogin={() =>setLogin(true)} />
 
     {/* Login Modal */}
@@ -22,7 +22,7 @@ const App = () => {
     (<LoginModal closeLogin={()=>setLogin(false)} />
     )}
 
-      <div>
+      <div className="">
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/restaurants" element={<Restaurants/>} />
