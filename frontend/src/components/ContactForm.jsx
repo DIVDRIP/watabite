@@ -4,7 +4,7 @@ const ContactForm = () => {
     <section className="relative mt-20 bg-black flex flex-col md:flex-row justify-center items-start px-30 py-10 gap-20">
 
       {/* Glow background */}
-      <div className="absolute inset-0 size-140 bg-green-500/35 rounded-full blur-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none mb-10"></div>
+      <div className="absolute inset-0 md:size-140 bg-green-500/35 rounded-full blur-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none mb-10"></div>
 
       <div className="text-center md:text-left mt-12">
         <div className="flex items-center  p-1.5 rounded-full border border-green-900 text-xs w-fit mx-auto md:mx-0">

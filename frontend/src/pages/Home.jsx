@@ -37,7 +37,7 @@ const Home = () => {
           How Watabite Works
         </h1>
 
-        <div className="flex flex-row gap-12">
+        <div className="flex flex-col md:flex-row gap-12">
           {/* CARD 1 */}
           <div className="flex flex-col gap-2 rounded-2xl border border-white/20 bg-white/6 backdrop-blur-xl shadow-xl p-6 py-10">
             <div className="w-6 h-6 rounded-full bg-primary text-black flex items-center justify-center text-sm font-semibold">
@@ -84,7 +84,7 @@ const Home = () => {
         <h1 className="text-xl md:text-3xl font-semibold text-center md:text-left">
           Track Your Order in Real-Time
         </h1>
-        <div className="flex flex-row justify-between w-full">
+        <div className="flex flex-col md:flex-row justify-between w-full">
           <div className="flex flex-row rounded-2xl p-6 items-center max-1/2 gap-5 border border-white/20 backdrop-blur-xl shadow-xl shadow-white/5">
             <img
               src={assets.deliveryillust}
