@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 
@@ -25,23 +26,41 @@ const Navbar = ({ openLogin }) => {
     // <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 transition-all fixed top-0 w-full bg backdrop-blur-lg border-b border-black/50 shadow-sm z-50">
 
     <nav
-  className={`
+      className={`
     fixed top-0 w-[85vw] left-1/2 -translate-x-1/2 z-50
     flex items-center justify-between
     px-6 md:px-16 lg:px-24 xl:px-8 py-4
     transition-all duration-300
-    ${scrolled
-      ? "bg-black/40 backdrop-blur-lg border-b top-3 rounded-full border-white/10 shadow-md"
-      : "bg-transparent"}
+    ${
+      scrolled
+        ? "bg-black/40 backdrop-blur-lg border-b top-3 rounded-full border-white/10 shadow-md"
+        : "bg-transparent"
+    }
   `}
->
-
+    >
       <img src={assets.logo} alt="Watabite Logo" className="h-11 w-auto" />
 
       {/* Desktop Menu */}
       <div className="hidden sm:flex items-center gap-8">
-        <Link to={"/"}>Home</Link>
-        <Link to={"/restaurants"}>Restaurants</Link>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `px-4 py-1 rounded-full transition-colors
+     ${isActive ? "bg-green-600 text-white" : "text-gray-300 hover:text-green-600"}`
+          }
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/restaurants"
+          className={({ isActive }) =>
+            `px-4 py-1 rounded-full transition-colors
+     ${isActive ? "bg-green-600 text-white" : "text-gray-300 hover:text-green-600"}`
+          }
+        >
+          Restaurants
+        </NavLink>
 
         <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
           <input
@@ -91,7 +110,7 @@ const Navbar = ({ openLogin }) => {
                   onClick={() => {
                     navigate("/my-orders");
                   }}
-                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                  className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md"
                 >
                   My Orders
                 </li>
@@ -99,13 +118,13 @@ const Navbar = ({ openLogin }) => {
                   onClick={() => {
                     navigate("/track-my-orders");
                   }}
-                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                  className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md"
                 >
                   Track
                 </li>
                 <li
                   onClick={() => setUser(null)}
-                  className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                  className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md"
                 >
                   Logout
                 </li>
@@ -113,7 +132,7 @@ const Navbar = ({ openLogin }) => {
             ) : (
               <li
                 onClick={openLogin}
-                className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
+                className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md "
               >
                 Login
               </li>

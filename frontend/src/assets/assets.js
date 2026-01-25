@@ -1,11 +1,19 @@
 import logo from "./watabite-logo.svg";
 import profileicon from "./profile-icon.gif";
 import herobanner from "./hero-banner.png";
+import webbanner1 from "./web-banner-1.png";
+import deliverygif from "./delivery-gif.gif"
+import deliveryillust from "./delivery-illust.png";
+import deliverybanner from "./delivery-banner.png";
 
 export const assets = {
     logo,
     profileicon,
     herobanner,
+    webbanner1,
+    deliverygif,
+    deliveryillust,
+    deliverybanner,
 };
 
 export const restaurantsDetails = [
