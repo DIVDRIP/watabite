@@ -1,51 +1,82 @@
-import React from 'react'
-import Item from './Item'
+
+import React, { useState } from 'react'
 import Title from './Title'
+import FoodItems from './FoodItems'
 
 const RestaurantMenu = ({restaurant}) => {
+  const [activeCategory, setActiveCategory] = useState(restaurant.menu[0]?.category || '')
+
+  const scrollToCategory = (category) => {
+    setActiveCategory(category)
+    const element = document.getElementById(category)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   return (
-     <div className=" w-[60vw] rounded-3xl border border-white/20 bg-black/90 shadow-[0_0_40px_rgba(34,197,94,0.25)]">
-
-
-<div className='text-center p-5 mt-4 text-3xl'>
-<Title text={"Menu View"}/>
-</div>
+    <div className="w-full max-w-7xl mx-auto rounded-3xl border border-white/20 bg-black/90 shadow-[0_0_40px_rgba(34,197,94,0.25)] overflow-hidden">
+      
       {/* HEADER */}
-      <div className="p-6 pt-1 border-b border-white/10">
-        <h2 className="text-2xl font-bold text-white">{restaurant.name}</h2>
-        <p className="text-sm text-gray-400">Explore delicious items</p>
+      <div className="relative bg-gradient-to-r from-green-900/30 to-emerald-900/30 p-8 border-b border-white/10">
+        <div className="text-center mb-4">
+          <Title text="Menu View"/>
+        </div>
+        <h2 className="text-3xl font-bold text-white text-center">{restaurant.name}</h2>
+        <p className="text-center text-gray-300 mt-2">Explore our delicious items</p>
       </div>
 
-      <div className="flex">
-
+      <div className="flex flex-col lg:flex-row">
         {/* LEFT SIDEBAR */}
-        <aside className="w-56 border-r border-white/10 sticky top-24 h-fit">
-          <p className='block px-6 py-4 text-gray-400 hover:text-green-400 hover:bg-white/5 transition'>Popular</p>
+        <aside className="lg:w-64 border-b lg:border-b-0 lg:border-r border-white/10 lg:sticky lg:top-24 lg:h-fit">
+          <div className="p-6">
+            <h3 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Categories</h3>
+            <nav className="space-y-2">
+              {restaurant.menu.map((cat) => (
+                <button
+                  key={cat.category}
+                  onClick={() => scrollToCategory(cat.category)}
+                  className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 ${
+                    activeCategory === cat.category
+                      ? 'bg-green-500 text-white font-semibold shadow-lg'
+                      : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {cat.category}
+                  <span className="ml-2 text-xs opacity-70">({cat.items.length})</span>
+                </button>
+              ))}
+            </nav>
+          </div>
         </aside>
 
         {/* RIGHT MENU */}
-        <div className='flex-1 p-6 space-y-10 '>
-           {
-            restaurant.menu.map((cat)=>(
-<div key={cat.category} id={cat.category}>
-              <h3 className="text-xl font-semibold text-white mb-4">
-                {cat.category}
-              </h3>
-
-               {/* FOOD GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-                {cat.items.map((item,index) => (
-                  <Item key={index} id={item.id} image={item.image} name={item.name}   />
-
-                   
-                 
-                ))}
-
+        <div className='flex-1 p-6 lg:p-8 space-y-12'>
+          {restaurant.menu.map((cat) => (
+            <div key={cat.category} id={cat.category} className="scroll-mt-24">
+              <div className="flex items-center gap-3 mb-6">
+                <h3 className="text-2xl font-bold text-white">
+                  {cat.category}
+                </h3>
+                <span className="px-3 py-1 text-xs font-semibold bg-green-500/20 text-green-400 rounded-full">
+                  {cat.items.length} items
+                </span>
               </div>
-</div>
-            ))
-           }
+
+              {/* FOOD GRID */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                {cat.items.map((food) => (
+                  <FoodItems
+                    key={food.id}
+                    image={food.image || "https://via.placeholder.com/300"}
+                    name={food.name}
+                    description={food.description}
+                    price={food.price}
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

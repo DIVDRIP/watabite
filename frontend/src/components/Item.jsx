@@ -10,7 +10,7 @@ const Item = ({ image, name, rating, category, reviews, time, onclick }) => {
         <img
           className=" group-hover:scale-110 transition ease-in-out h-55 w-full object-cover"
           src={image}
-          alt=""
+          alt="image"
         />
 
         {/* Heart Icon */}
