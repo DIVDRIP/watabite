@@ -68,6 +68,7 @@ const RestaurantMenu = ({restaurant}) => {
                 {cat.items.map((food) => (
                   <FoodItems
                     key={food.id}
+                    id={food.id}
                     image={food.image || "https://via.placeholder.com/300"}
                     name={food.name}
                     description={food.description}

@@ -6,6 +6,7 @@ import LoginModal from "./models/LoginModal";
 import Restaurants from "./pages/Restaurants";
 import MyOrders from "./pages/MyOrders";
 import TrackMyOrder from "./pages/TrackMyOrder";
+import CartPage from "./pages/CartPage";
 
 const App = () => {
 
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/" element={<Home/>} />
           <Route path="/restaurants" element={<Restaurants/>} />
           <Route path="/my-orders" element={<MyOrders/>} />
+          <Route path="/cartpage" element={<CartPage/>} />
           <Route path="/track-my-order" element={<TrackMyOrder/>} />
         </Routes>
       </div>
