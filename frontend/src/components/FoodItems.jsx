@@ -7,15 +7,19 @@ const FoodItems = ({ id, image, name, description, price }) => {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isAdded, setIsAdded] = useState(false)
   const {addToCart} = useContext(AppContext);
+  
+
+
+
 
   const handleAddToCart = () => {
         addToCart({ id, image, name, price });
     setIsAdded(true)
     setTimeout(() => setIsAdded(false), 2000)
   }
-
+// bg-gradient-to-b from-zinc-900 to-black
   return (
-    <div className="group relative hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] cursor-pointer overflow-hidden rounded-2xl border border-white/20 bg-gradient-to-b from-zinc-900 to-black transition-all duration-300 hover:scale-[1.02] hover:border-green-500/50">
+    <div className="group relative hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] cursor-pointer overflow-hidden rounded-2xl border border-white/20 bg-black transition-all duration-300 hover:scale-[1.02] hover:shadow-green-400/18">
       
       {/* IMAGE SECTION */}
       <div className="relative overflow-hidden bg-zinc-800">
@@ -64,8 +68,8 @@ const FoodItems = ({ id, image, name, description, price }) => {
           onClick={handleAddToCart}
           className={`w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
             isAdded
-              ? 'bg-green-600 text-white'
-              : 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white shadow-lg hover:shadow-green-500/50'
+              ? ' bg-green-800 backdrop-blur-3xl  text-white'
+              : ' bg-green-800 backdrop-blur-3xl  text-white shadow-lg hover:shadow-green-400/18'
           }`}
         >
           {isAdded ? ' Added!' : 'Add to Cart'}

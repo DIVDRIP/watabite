@@ -8,10 +8,10 @@ const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   // Auth state
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
   // user = { id, name, email, role }
 
-  const [userRole, setUserRole] = useState(null); 
+  const [userRole, setUserRole] = useState(null);
   // "customer" | "restaurant" | "rider"
 
   // UI state
@@ -21,31 +21,47 @@ const AppContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   // cart
-    const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
+  // ADD TO CART
   const addToCart = (item) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((i) => i.id === item.id);
+    setCartItems((prev) => {
+      const exists = prev.find((p) => p.id === item.id);
 
-      if (existing) {
-        return prevCart.map((i) =>
-          i.id === item.id ? { ...i, qty: i.qty + 1 } : i
+      if (exists) {
+        // quantity increase
+        return prev.map((p) =>
+          p.id === item.id ? { ...p, qty: p.qty + 1 } : p
         );
+      } else {
+        return [...prev, { ...item, qty: 1 }];
       }
-
-      return [...prevCart, { ...item, qty: 1 }];
     });
   };
 
- 
-  
+  // REMOVE FROM CART
+  const removeFromCart = (id) => {
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  // cartCount
+  const cartCount = cartItems?.reduce(
+    (total, item) => total + item.qty,
+    0
+  );
+
+  // cart total amount
+  const totalAmount = cartItems.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
 
   const value = {
     // navigation
     navigate,
 
     // cat data
-    cart, addToCart,
+    addToCart, removeFromCart, cartItems, cartCount, totalAmount,
     // restaurants
     restaurantsDetails,
 

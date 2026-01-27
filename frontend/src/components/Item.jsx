@@ -8,7 +8,7 @@ const Item = ({ image, name, rating, category, reviews, time, onclick }) => {
     >
       <div className="relative border-b border-b-white">
         <img
-          className=" group-hover:scale-110 transition ease-in-out h-55 w-full object-cover"
+          className=" transition-transform duration-500 group-hover:scale-110 h-55 w-full object-cover"
           src={image}
           alt="image"
         />

@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { AppContext } from "../context/AppContext";
+import { ShoppingCart } from "lucide-react";
 
 const Navbar = ({ openLogin }) => {
   const [open, setOpen] = useState(false);
 
-  const { user, setUser, navigate } = useContext(AppContext);
+  const { user, setUser, navigate,cartItems,cartCount } = useContext(AppContext);
 
   //Navbar transparent effect
   const [scrolled, setScrolled] = useState(false);
@@ -100,6 +101,8 @@ const Navbar = ({ openLogin }) => {
             className="h-10 w-10 rounded-full cursor-pointer object-cover"
           />
 
+
+
           {/* Invisible Hover Bridge */}
           <div className="absolute right-0 top-full h-3 w-full"></div>
 
@@ -136,9 +139,27 @@ const Navbar = ({ openLogin }) => {
               >
                 Login
               </li>
+              
             )}
           </ul>
         </div>
+
+
+          {/* CART ICON */}
+<div
+  onClick={() => navigate("/cartpage")}
+  className="relative cursor-pointer ml-4 rounded-full py-2 px-2 bg-green-500 text-white"
+>
+  <ShoppingCart className="text-white hover:text-white-500 transition" size={26} />
+
+ {cartCount > 0 && (
+  <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+    {cartCount}
+  </span>
+)}
+
+</div>
+
       </div>
 
       <button
@@ -201,6 +222,7 @@ const Navbar = ({ openLogin }) => {
                 >
                   Logout
                 </li>
+                
               </>
             ) : (
               <li
