@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { AppContext } from '../context/AppContext';
 
 const CartItems = () => {
-    const { cartItems, totalAmount, removeFromCart } = useContext(AppContext);
+    const { cartItems, totalAmount, removeFromCart, increaseQty, decreaseQty,navigate } = useContext(AppContext);
 
     return (
         <div className="min-h-screen bg-black px-6 md:px-20 py-28 text-white">
@@ -38,13 +38,33 @@ const CartItems = () => {
                                     <h3 className="font-semibold text-lg">
                                         {item.name}
                                     </h3>
-                                    <p className="text-gray-400 text-sm mt-1">
+                                    {/* <p className="text-gray-400 text-sm mt-1">
                                         ₹{item.price} * {item.qty}
-                                    </p>
+                                    </p> */}
+
+                                    {/* price with increment and decrement */}
+                                    <div className="flex items-center gap-3 mt-2">
+                                        <button
+                                            onClick={() => decreaseQty(item.id)}
+                                            className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 hover:bg-red-500/30 transition"
+                                        >
+                                            -
+                                        </button>
+
+                                        <span className="font-semibold">{item.qty}</span>
+
+                                        <button
+                                            onClick={() => increaseQty(item.id)}
+                                            className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/10 hover:bg-green-500/30 transition"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+
                                     {/* REMOVE ICON */}
                                     <button
                                         onClick={() => removeFromCart(item.id)}
-                                        className="ml-4 p-1.5 rounded-full hover:bg-red-500/20 transition"
+                                        className="mt-2 p-1.5 rounded-full hover:bg-red-500/20 transition"
                                         title="Remove item"
                                     >
                                         <X size={18} className="text-red-500" />
@@ -86,7 +106,7 @@ const CartItems = () => {
                             </span>
                         </div>
 
-                        <button className="w-full mt-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 transition font-semibold">
+                        <button onClick={()=>navigate('/payment-page')} className="w-full mt-6 py-3 rounded-xl bg-green-600 hover:bg-green-700 transition font-semibold">
                             Proceed to Checkout
                         </button>
                     </div>

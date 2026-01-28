@@ -44,6 +44,27 @@ const AppContextProvider = ({ children }) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // INCREASE QTY
+const increaseQty = (id) => {
+  setCartItems((prev) =>
+    prev.map((item) =>
+      item.id === id ? { ...item, qty: item.qty + 1 } : item
+    )
+  );
+};
+
+// DECREASE QTY
+const decreaseQty = (id) => {
+  setCartItems((prev) =>
+    prev
+      .map((item) =>
+        item.id === id ? { ...item, qty: item.qty - 1 } : item
+      )
+      .filter((item) => item.qty > 0)
+  );
+};
+
+
   // cartCount
   const cartCount = cartItems?.reduce(
     (total, item) => total + item.qty,
@@ -61,7 +82,7 @@ const AppContextProvider = ({ children }) => {
     navigate,
 
     // cat data
-    addToCart, removeFromCart, cartItems, cartCount, totalAmount,
+    addToCart, removeFromCart, cartItems, cartCount, totalAmount,increaseQty,decreaseQty,
     // restaurants
     restaurantsDetails,
 
