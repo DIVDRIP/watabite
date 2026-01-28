@@ -7,6 +7,7 @@ import Restaurants from "./pages/Restaurants";
 import MyOrders from "./pages/MyOrders";
 import TrackMyOrder from "./pages/TrackMyOrder";
 import CartPage from "./pages/CartPage";
+import PaymentPage from "./pages/PaymentPage";
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/restaurants" element={<Restaurants/>} />
           <Route path="/my-orders" element={<MyOrders/>} />
           <Route path="/cartpage" element={<CartPage/>} />
+          <Route path="/payment-page" element={<PaymentPage/>} />
           <Route path="/track-my-order" element={<TrackMyOrder/>} />
         </Routes>
       </div>
