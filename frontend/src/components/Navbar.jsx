@@ -119,7 +119,7 @@ const Navbar = ({ openLogin }) => {
                 </li>
                 <li
                   onClick={() => {
-                    navigate("/track-my-orders");
+                    navigate("/track-my-order");
                   }}
                   className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md"
                 >
@@ -210,7 +210,7 @@ const Navbar = ({ openLogin }) => {
                 </li>
                 <li
                   onClick={() => {
-                    navigate("/track-my-orders");
+                    navigate("/track-my-order");
                   }}
                   className="p-1.5 cursor-pointer hover:bg-[#62CC74] hover:rounded-md hover:text-black"
                 >

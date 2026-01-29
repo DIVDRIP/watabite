@@ -124,8 +124,6 @@ const Home = () => {
       {/* Contact Form */}
       <ContactForm />
 
-      {/* Footer Section */}
-      <Footer />
     </div>
   );
 };

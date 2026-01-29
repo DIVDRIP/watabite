@@ -8,6 +8,7 @@ import MyOrders from "./pages/MyOrders";
 import TrackMyOrder from "./pages/TrackMyOrder";
 import CartPage from "./pages/CartPage";
 import PaymentPage from "./pages/PaymentPage";
+import Footer from "./components/Footer";
 
 const App = () => {
 
@@ -31,9 +32,12 @@ const App = () => {
           <Route path="/my-orders" element={<MyOrders/>} />
           <Route path="/cartpage" element={<CartPage/>} />
           <Route path="/payment-page" element={<PaymentPage/>} />
-          <Route path="/track-my-order" element={<TrackMyOrder/>} />
+          <Route path="/track-my-order/:id" element={<TrackMyOrder/>} />
         </Routes>
       </div>
+
+      {/* Footer */}
+      <Footer />   {/* 👈 appears on every page */}
     </div>
   )
 }

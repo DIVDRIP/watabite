@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 const Footer = () => {
   return (
 
-      <footer className="flex flex-col items-center justify-around w-full py-16 text-sm bg-black text-white">
+      <footer className="flex flex-col items-center justify-around w-full py-16 text-sm bg-black text-white border-t border-amber-50/10">
         <img src={assets.logo} alt="Watabite Logo" className="h-11 w-auto" />
         <p className="mt-4 text-center text-primary">
           Copyright © 2026 Watabite. All
