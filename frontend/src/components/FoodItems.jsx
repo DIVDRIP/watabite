@@ -8,12 +8,16 @@ const FoodItems = ({ id, image, name, description, price }) => {
   const [isAdded, setIsAdded] = useState(false)
   const {addToCart} = useContext(AppContext);
   
+ 
+  //  NEW: current quantity from cart
+  // const quantity = cartItems[id]?.qty || 0;
 
 
 
 
   const handleAddToCart = () => {
         addToCart({ id, image, name, price });
+        
     setIsAdded(true)
     setTimeout(() => setIsAdded(false), 2000)
   }
@@ -74,6 +78,9 @@ const FoodItems = ({ id, image, name, description, price }) => {
         >
           {isAdded ? ' Added!' : 'Add to Cart'}
         </button>
+
+
+       
       </div>
     </div>
   );

@@ -24,6 +24,10 @@ const CartItems = () => {
                     {/* CART ITEMS */}
                     <div className="lg:col-span-2 flex flex-col gap-6">
                         {cartItems.map((item) => (
+              // NEW
+
+                              
+           
                             <div
                                 key={item.id}
                                 className="flex gap-5 items-center rounded-2xl border border-white/20 bg-white/6 backdrop-blur-xl p-5"
@@ -76,7 +80,8 @@ const CartItems = () => {
                                     ₹{item.price * item.qty}
                                 </p>
                             </div>
-                        ))}
+                        
+))}
                     </div>
 
 
