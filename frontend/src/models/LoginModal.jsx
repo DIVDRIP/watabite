@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import watabite_logo from "../assets/watabite-logo.svg";
 import { AppContext } from "../context/AppContext";
 import { replace } from "react-router-dom";
+import axios from "axios"
 
 const LoginModal = ({ closeLogin }) => {
   // modal animation state
   const [isVisible, setIsVisible] = useState(false);
 
-  const {navigate, setUser} = useContext(AppContext);
+  const {navigate, setUser,backendUrl} = useContext(AppContext);
 
   // login and register form toggler state
   const [toggle, setToggle] = useState("Login");
@@ -82,14 +83,37 @@ const LoginModal = ({ closeLogin }) => {
   };
 
   // button onclick for register handler
-  const handleRegister = (e) => {
+  const handleRegister = async(e) => {
     e.preventDefault();
     if (!validateForm()) return; // stop if invalid
-    console.log("Register Function Executed", formData);
+    // console.log("Register Function Executed", formData);
     // window.location.replace("/");
-    setUser(true);
-    handleClose();
-    navigate("/", { replace: true });
+    // setUser(true);
+    // handleClose();
+    // navigate("/", { replace: true });
+
+   try {
+    console.log("Sending Data:", formData);
+
+    const response = await axios.post(
+      backendUrl + "/api/user/register",
+      formData
+    );
+
+    console.log("API Response:", response.data);
+
+    if (response.data.success) {
+      setUser(true);
+      handleClose();
+      navigate("/", { replace: true });
+    } else {
+      alert(response.data.message);
+    }
+
+  } catch (error) {
+    console.log("Error:", error.response?.data || error.message);
+  }
+
   };
 
   // Add a function for closing with animation

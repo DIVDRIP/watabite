@@ -2,7 +2,9 @@ import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { restaurantsDetails } from "../assets/assets";
 
+
 export const AppContext = createContext(null);
+const backendUrl = import.meta.env.VITE_BACKEND_URL
 
 const AppContextProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -123,7 +125,7 @@ const decreaseQty = (id) => {
     navigate,
 
     // cat data
-    addToCart, removeFromCart, cartItems,increaseQty,decreaseQty,cartCount,totalAmount,
+    addToCart, removeFromCart, cartItems,increaseQty,decreaseQty,cartCount,totalAmount,backendUrl,
     // restaurants
     restaurantsDetails,
 
