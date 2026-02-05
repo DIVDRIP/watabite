@@ -9,6 +9,8 @@ import TrackMyOrder from "./pages/TrackMyOrder";
 import CartPage from "./pages/CartPage";
 import PaymentPage from "./pages/PaymentPage";
 import Footer from "./components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 
@@ -17,6 +19,7 @@ const App = () => {
   // const isSellerPath = useLocation().pathname.includes("seller");
   return (
     <div className="text-default min-h-screen bg-black text-white">
+      <ToastContainer/>
       <Navbar openLogin={() =>setLogin(true)} />
 
     {/* Login Modal */}

@@ -49,7 +49,7 @@ res.json({success:true,token})
     }
 
 }
-// user registration
+// user login
 const userLogin = async(req,res)=>{
 
     try {
