@@ -3,6 +3,7 @@ import watabite_logo from "../assets/watabite-logo.svg";
 import { AppContext } from "../context/AppContext";
 import { replace } from "react-router-dom";
 import axios from "axios"
+import { toast } from "react-toastify";
 
 const LoginModal = ({ closeLogin }) => {
   // modal animation state
@@ -71,15 +72,40 @@ const LoginModal = ({ closeLogin }) => {
   };
 
   // button onclick for login handler
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
     if (!validateForm()) return; // stop if invalid
-    console.log("Login Function Executed", formData);
+    // console.log("Login Function Executed", formData);
     // window.location.replace("/");
-    setUser(true);
-    handleClose();
-    navigate("/", { replace: true });
+    // setUser(true);
+    // handleClose();
+    // navigate("/", { replace: true });
 
+    try {
+
+      console.log('Sending Data',formData)
+
+      const response = await axios.post(
+        backendUrl + "/api/user/login",
+        formData
+      );
+
+console.log('Api Response',response.data); 
+
+if (response.data.success) {
+   localStorage.setItem("token", response.data.token);
+      setUser(true);
+      handleClose();
+      toast.success("CONGRATS YOUR LOGGED IN..")
+      navigate("/", { replace: true });
+    } else {
+      alert(response.data.message);
+      
+    }
+    } catch (error) {
+          console.log("Error:", error.response?.data || error.message);
+    toast.error(error.message);
+    }
   };
 
   // button onclick for register handler
@@ -103,15 +129,19 @@ const LoginModal = ({ closeLogin }) => {
     console.log("API Response:", response.data);
 
     if (response.data.success) {
+       localStorage.setItem("token", response.data.token);
       setUser(true);
       handleClose();
+      toast.success("CONGRATS YOUR ACCOUNT CREATED..")
       navigate("/", { replace: true });
     } else {
       alert(response.data.message);
+      
     }
 
   } catch (error) {
     console.log("Error:", error.response?.data || error.message);
+    toast.error(error.message);
   }
 
   };

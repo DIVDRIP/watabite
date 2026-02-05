@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { restaurantsDetails } from "../assets/assets";
 
@@ -12,6 +12,12 @@ const AppContextProvider = ({ children }) => {
   // Auth state
   const [user, setUser] = useState(null);
   // user = { id, name, email, role }
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUser(true);
+    }
+  }, []);
 
   const [userRole, setUserRole] = useState(null);
   // "customer" | "restaurant" | "rider"

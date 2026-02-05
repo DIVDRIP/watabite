@@ -126,7 +126,10 @@ const Navbar = ({ openLogin }) => {
                   Track
                 </li>
                 <li
-                  onClick={() => setUser(null)}
+                  onClick={() => {
+                    localStorage.removeItem("token"); 
+setUser(false);
+                  } }
                   className="p-1.5 cursor-pointer hover:bg-green-600 hover:text-white hover:rounded-md"
                 >
                   Logout
@@ -146,6 +149,7 @@ const Navbar = ({ openLogin }) => {
 
 
           {/* CART ICON */}
+          {user && (
 <div
   onClick={() => navigate("/cartpage")}
   className="relative cursor-pointer ml-4 rounded-full py-2 px-2 bg-green-500 text-white"
@@ -159,6 +163,7 @@ const Navbar = ({ openLogin }) => {
 )}
 
 </div>
+          )}
 
       </div>
 
