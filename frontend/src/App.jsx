@@ -1,15 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route} from "react-router-dom";
+import Home from './pages/Home';
+import Navbar from "./components/Navbar";
+import { useState } from "react";
+import LoginModal from "./models/LoginModal";
+import Restaurants from "./pages/Restaurants";
+import MyOrders from "./pages/MyOrders";
+import TrackMyOrder from "./pages/TrackMyOrder";
+import CartPage from "./pages/CartPage";
+import PaymentPage from "./pages/PaymentPage";
 
-function App() {
+const App = () => {
 
+  const [login, setLogin] = useState(false);
+
+  // const isSellerPath = useLocation().pathname.includes("seller");
   return (
-   <div>
-    <h1 className='text-gray-700 text-[30px] bg-green-400'>hi</h1>
-   </div>
+    <div className="text-default min-h-screen bg-black text-white">
+      <Navbar openLogin={() =>setLogin(true)} />
+
+    {/* Login Modal */}
+
+    {login &&
+    (<LoginModal closeLogin={()=>setLogin(false)} />
+    )}
+
+      <div className="">
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/restaurants" element={<Restaurants/>} />
+          <Route path="/my-orders" element={<MyOrders/>} />
+          <Route path="/cartpage" element={<CartPage/>} />
+          <Route path="/payment-page" element={<PaymentPage/>} />
+          <Route path="/track-my-order" element={<TrackMyOrder/>} />
+        </Routes>
+      </div>
+    </div>
   )
 }
 
-export default App
+export default App;
